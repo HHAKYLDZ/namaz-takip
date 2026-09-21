@@ -13,80 +13,251 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon-v2.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={darkMode:'class'}</script>
+
 <style>
 :root{
-  --night:#06110f;
-  --night2:#091a16;
-  --panel:rgba(12,34,29,.82);
-  --panel2:rgba(16,45,38,.72);
-  --line:rgba(190,160,82,.20);
-  --gold:#d7b45a;
-  --gold2:#f1d47b;
-  --emerald:#0d8a68;
-  --emerald2:#19b887;
-  --text:#f4f7f5;
-  --muted:#9eafa9;
+  --bg:#06110f;
+  --bg-deep:#030907;
+  --surface:#0b1d18;
+  --surface-2:#102a22;
+  --surface-3:#14372d;
+  --gold:#d6b45c;
+  --gold-soft:#f0d889;
+  --green:#13a477;
+  --green-bright:#21c997;
+  --white:#f7faf8;
+  --text:#edf4f1;
+  --muted:#a9bbb5;
+  --muted-2:#7f948d;
+  --danger:#f28b83;
+  --line:rgba(214,180,92,.22);
+  --line-green:rgba(33,201,151,.28);
 }
-html,body{min-height:100%;background:var(--night);color:var(--text)}
+
+html,body{
+  min-height:100%;
+  background:var(--bg-deep)!important;
+  color:var(--text)!important;
+}
 body{
   padding-top:env(safe-area-inset-top);
   padding-bottom:env(safe-area-inset-bottom);
   font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.005em;
   background:
-    radial-gradient(circle at 50% -10%,rgba(215,180,90,.10),transparent 30rem),
-    radial-gradient(circle at 100% 30%,rgba(13,138,104,.10),transparent 28rem),
-    var(--night);
+    radial-gradient(900px 420px at 50% -140px,rgba(214,180,92,.14),transparent 65%),
+    radial-gradient(700px 500px at 105% 25%,rgba(19,164,119,.13),transparent 65%),
+    linear-gradient(180deg,#07130f 0%,#030907 100%)!important;
 }
+
 button,input{touch-action:manipulation}
+
 .glass{
-  background:linear-gradient(145deg,rgba(14,43,36,.88),rgba(7,24,20,.86));
-  border-color:var(--line)!important;
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  box-shadow:0 16px 45px rgba(0,0,0,.18);
+  background:linear-gradient(145deg,rgba(16,43,35,.96),rgba(7,23,19,.96))!important;
+  border:1px solid var(--line)!important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 14px 38px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.025);
 }
-.dark .glass{background:linear-gradient(145deg,rgba(14,43,36,.88),rgba(7,24,20,.86))}
-input{
-  background:rgba(4,17,14,.72)!important;
+
+header.glass{
+  background:rgba(5,17,14,.93)!important;
+  border-bottom:1px solid rgba(214,180,92,.20)!important;
+}
+
+h1,h2,h3,b,.font-bold,.font-black,.font-extrabold,.font-semibold{
+  color:var(--white)!important;
+}
+
+p,.text-slate-500,.text-slate-400,.text-slate-300,.text-slate-600{
+  color:var(--muted)!important;
+}
+
+.text-slate-700,.text-slate-800,.text-slate-900{
   color:var(--text)!important;
-  border-color:rgba(215,180,90,.22)!important;
 }
-input::placeholder{color:#71837d}
-button{transition:transform .15s,filter .15s,box-shadow .15s}
-button:active{transform:scale(.97)}
+
+.text-white{color:#fff!important}
+
+input{
+  background:#071510!important;
+  color:var(--white)!important;
+  border:1px solid rgba(214,180,92,.24)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
+}
+input:focus{
+  outline:none!important;
+  border-color:rgba(33,201,151,.65)!important;
+  box-shadow:0 0 0 3px rgba(33,201,151,.12)!important;
+}
+input::placeholder{color:#71857e!important}
+
+button{
+  border-radius:14px;
+  transition:transform .15s ease,filter .15s ease,box-shadow .15s ease,background .15s ease;
+}
 button:not(:disabled):hover{filter:brightness(1.08)}
-.prayer-btn{transition:transform .15s,box-shadow .15s,background .15s}
-.prayer-btn:active{transform:scale(.97)}
-.done{box-shadow:0 8px 28px rgba(25,184,135,.20)}
-.dark .bg-white,.bg-white{background:#102b24!important}
-.dark .bg-slate-900,.bg-slate-900{background:#071712!important}
-.dark .bg-slate-800,.bg-slate-800{background:#0b211b!important}
-.bg-emerald-600{background:#0d8a68!important}
-.bg-emerald-500{background:#19b887!important}
-.text-emerald-600{color:var(--gold2)!important}
-.text-emerald-700{color:#e6c66b!important}
-.text-slate-500{color:var(--muted)!important}
-.text-slate-400{color:#849791!important}
-.text-slate-300{color:#aabbb5!important}
-.border-slate-200,.border-slate-200\/80{border-color:rgba(215,180,90,.18)!important}
-.border-slate-700{border-color:rgba(215,180,90,.18)!important}
-.border-emerald-300{border-color:rgba(25,184,135,.55)!important}
-.bg-emerald-100{background:rgba(25,184,135,.15)!important}
-.bg-emerald-950{background:rgba(6,55,42,.75)!important}
-.bg-amber-50{background:rgba(215,180,90,.14)!important}
-.text-amber-700{color:var(--gold2)!important}
-.bg-amber-500{background:#b98928!important}
-.text-rose-600{color:#f08c88!important}
-.border-rose-200{border-color:rgba(240,140,136,.25)!important}
-.bg-slate-100{background:#102820!important}
-.bg-slate-900.text-white{background:linear-gradient(135deg,#b58b32,#d7b45a)!important;color:#08120f!important}
+button:active{transform:scale(.975)}
+button:disabled{opacity:.45;cursor:not-allowed}
+
+.bg-emerald-600{
+  background:linear-gradient(135deg,#0e8f6d,#16b184)!important;
+  box-shadow:0 8px 22px rgba(19,164,119,.20);
+}
+.bg-emerald-500{background:#21c997!important}
+
+.bg-slate-900{
+  background:linear-gradient(135deg,#c29a3d,#e0bf68)!important;
+}
+.bg-slate-900.text-white{color:#09120f!important}
+
+.border-slate-200,
+.border-slate-200\/80,
+.border-slate-700{
+  border-color:rgba(214,180,92,.20)!important;
+}
+.border-emerald-300{
+  border-color:rgba(33,201,151,.62)!important;
+  box-shadow:0 0 0 1px rgba(33,201,151,.07),0 14px 34px rgba(0,0,0,.20);
+}
+
+.bg-white,
+.dark .bg-white{
+  background:linear-gradient(145deg,#12352b,#0b241d)!important;
+}
+.bg-slate-900,.dark .bg-slate-900{
+  background:linear-gradient(145deg,#081812,#05110d)!important;
+}
+.bg-slate-800,.dark .bg-slate-800{
+  background:#0a211a!important;
+}
+.bg-slate-100{
+  background:#122d24!important;
+}
+
+.text-emerald-600{color:var(--gold-soft)!important}
+.text-emerald-700{color:#e7c86f!important}
+.text-emerald-50{color:#f4fff9!important}
+
+.bg-emerald-100{background:rgba(33,201,151,.13)!important}
+.bg-emerald-950{background:rgba(3,57,43,.75)!important}
+
+.bg-amber-50{background:rgba(214,180,92,.12)!important}
+.bg-amber-500{background:linear-gradient(135deg,#a97820,#c99d3e)!important}
+.text-amber-700{color:var(--gold-soft)!important}
+
+.text-rose-600{color:var(--danger)!important}
+.border-rose-200{border-color:rgba(242,139,131,.28)!important}
+
+#summary{
+  color:#c3d2cd!important;
+  font-size:.82rem!important;
+}
+#cityStatus{
+  color:#a9bbb5!important;
+}
+#progress{
+  box-shadow:0 0 16px rgba(33,201,151,.28);
+}
+#qadaTotal{
+  min-width:42px;
+  text-align:center;
+  background:rgba(214,180,92,.14)!important;
+  border:1px solid rgba(214,180,92,.20);
+  color:var(--gold-soft)!important;
+}
+#qadaList > div{
+  background:rgba(6,21,17,.42);
+  border-color:rgba(214,180,92,.16)!important;
+}
+.qada-decrease{
+  background:linear-gradient(135deg,#b58a31,#d8b65c)!important;
+  color:#07100d!important;
+}
+.set-status{
+  color:#f5faf7!important;
+  border-color:rgba(255,255,255,.20)!important;
+  background:rgba(255,255,255,.09)!important;
+}
+.set-status:hover{
+  background:rgba(255,255,255,.16)!important;
+}
+
+#members article{
+  overflow:hidden;
+}
+#members article > div:first-child{
+  color:var(--white)!important;
+}
+#members article .grid > div{
+  min-height:112px;
+}
+#members article .grid > div > div{
+  color:inherit;
+}
+#members article .grid > div:not(.bg-emerald-600):not(.bg-amber-500){
+  color:var(--text)!important;
+}
+#members article .grid > div:not(.bg-emerald-600):not(.bg-amber-500) .text-slate-400{
+  color:#91a69e!important;
+}
+#members article .bg-emerald-600{
+  background:linear-gradient(145deg,#0f9a75,#087658)!important;
+}
+#members article .bg-amber-500{
+  background:linear-gradient(145deg,#ad7c24,#c69d43)!important;
+}
+
+#themeBtn{
+  color:var(--gold-soft)!important;
+  border-color:rgba(214,180,92,.25)!important;
+  background:#0a211a!important;
+}
+#notifyBtn{
+  background:linear-gradient(135deg,#0f9c76,#17b887)!important;
+}
+#refreshBtn,#testNotify{
+  color:var(--text)!important;
+  background:#0b211b!important;
+  border-color:rgba(214,180,92,.20)!important;
+}
+#citySave{
+  color:#08110e!important;
+}
+#setupSave{
+  background:linear-gradient(135deg,#0f9c76,#17b887)!important;
+}
+#leaveGroup{
+  color:var(--danger)!important;
+}
+
+footer{
+  color:#738980!important;
+}
+
+a{color:var(--gold-soft)}
+::selection{
+  background:rgba(214,180,92,.28);
+  color:#fff;
+}
+
+.safe-bottom{
+  padding-bottom:calc(1rem + env(safe-area-inset-bottom));
+}
+
+@media (max-width:640px){
+  body{font-size:15px}
+  .glass{border-radius:22px!important}
+  #members article .grid > div{min-height:108px}
+}
 </style>
+
 </head>
 <body class="text-slate-800 dark:text-slate-100">
 <div id="app">
-<div id="loading" class="min-h-screen grid place-items-center" style="background:linear-gradient(180deg,#06110f,#091a16)"><div class="text-center"><div class="text-3xl">☪</div><b>Namaz Takip yükleniyor…</b></div></div>
+<div id="loading" class="min-h-screen grid place-items-center" style="background:linear-gradient(180deg,#06110f,#030907)"><div class="text-center"><img src="./icon-192-v2.png" alt="" class="mx-auto mb-4 h-16 w-16 rounded-[18px] shadow-2xl"><b class="text-xl">Namaz Takip yükleniyor…</b></div></div>
 <section id="setup" class="hidden min-h-screen p-5"><div class="mx-auto max-w-md pt-8">
-<h1 class="text-3xl font-black">Namaz Takip</h1><p class="mt-2 text-slate-500">Arkadaş grubunuzla aynı ekranı paylaşın. Herkes yalnızca kendi namazlarını işaretlesin.</p>
+<div class="flex items-center gap-3"><img src="./icon-192-v2.png" alt="" class="h-14 w-14 rounded-2xl shadow-xl"><h1 class="text-3xl font-black">Namaz Takip</h1></div><p class="mt-2 text-slate-500">Arkadaş grubunuzla aynı ekranı paylaşın. Herkes yalnızca kendi namazlarını işaretlesin.</p>
 <div class="glass rounded-3xl border p-5 mt-6">
 <label class="block text-sm font-semibold mb-2">Senin adın</label><input id="setupName" maxlength="30" class="w-full rounded-2xl border px-4 py-3" placeholder="Örn. Ahmet">
 <label class="block text-sm font-semibold mt-4 mb-2">Grup kodu</label><input id="setupGroup" maxlength="30" class="w-full rounded-2xl border px-4 py-3 uppercase" placeholder="Örn. DOSTLAR2026">
@@ -95,7 +266,7 @@ button:not(:disabled):hover{filter:brightness(1.08)}
 <div id="setupError" class="hidden mt-3 text-rose-600 text-sm"></div></div></div></section>
 <main id="main" class="hidden">
 <header class="sticky top-0 z-30 glass border-b"><div class="mx-auto max-w-5xl px-4 py-3 flex justify-between items-center">
-<div><b>☪ Namaz Takip</b><div class="text-xs text-slate-500"><span id="groupLabel"></span> · <span id="todayLabel"></span></div></div>
+<div class="flex items-center gap-3"><img src="./icon-192-v2.png" alt="" class="h-10 w-10 rounded-xl shadow-lg"><div><b class="text-lg">Namaz Takip</b><div class="text-xs text-slate-500"><span id="groupLabel"></span> · <span id="todayLabel"></span></div></div></div>
 <div class="flex gap-2"><button id="themeBtn" class="border rounded-xl px-3" style="border-color:rgba(215,180,90,.28);background:rgba(8,25,20,.8);color:#f1d47b">◐</button><button id="notifyBtn" class="rounded-xl bg-emerald-600 text-white px-3 py-2 text-sm font-bold">Bildirim</button></div>
 </div></header>
 <div class="mx-auto max-w-5xl px-4 py-5 space-y-5">
