@@ -9,18 +9,82 @@
 <meta name="apple-mobile-web-app-title" content="Namaz Takip">
 <meta name="description" content="Arkadaş grubuyla ortak namaz takip uygulaması">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>tailwind.config={darkMode:'class'}</script>
 <style>
-html,body{min-height:100%;background:#f8fafc}.dark body{background:#071311}
-body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{touch-action:manipulation}.glass{background:rgba(255,255,255,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-.dark .glass{background:rgba(15,23,42,.72)}.prayer-btn{transition:.15s}.prayer-btn:not(:disabled):active{transform:scale(.97)}.prayer-btn:disabled{cursor:not-allowed}.done{box-shadow:0 8px 24px rgba(16,185,129,.22)}
+:root{
+  --night:#06110f;
+  --night2:#091a16;
+  --panel:rgba(12,34,29,.82);
+  --panel2:rgba(16,45,38,.72);
+  --line:rgba(190,160,82,.20);
+  --gold:#d7b45a;
+  --gold2:#f1d47b;
+  --emerald:#0d8a68;
+  --emerald2:#19b887;
+  --text:#f4f7f5;
+  --muted:#9eafa9;
+}
+html,body{min-height:100%;background:var(--night);color:var(--text)}
+body{
+  padding-top:env(safe-area-inset-top);
+  padding-bottom:env(safe-area-inset-bottom);
+  font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(215,180,90,.10),transparent 30rem),
+    radial-gradient(circle at 100% 30%,rgba(13,138,104,.10),transparent 28rem),
+    var(--night);
+}
+button,input{touch-action:manipulation}
+.glass{
+  background:linear-gradient(145deg,rgba(14,43,36,.88),rgba(7,24,20,.86));
+  border-color:var(--line)!important;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 16px 45px rgba(0,0,0,.18);
+}
+.dark .glass{background:linear-gradient(145deg,rgba(14,43,36,.88),rgba(7,24,20,.86))}
+input{
+  background:rgba(4,17,14,.72)!important;
+  color:var(--text)!important;
+  border-color:rgba(215,180,90,.22)!important;
+}
+input::placeholder{color:#71837d}
+button{transition:transform .15s,filter .15s,box-shadow .15s}
+button:active{transform:scale(.97)}
+button:not(:disabled):hover{filter:brightness(1.08)}
+.prayer-btn{transition:transform .15s,box-shadow .15s,background .15s}
+.prayer-btn:active{transform:scale(.97)}
+.done{box-shadow:0 8px 28px rgba(25,184,135,.20)}
+.dark .bg-white,.bg-white{background:#102b24!important}
+.dark .bg-slate-900,.bg-slate-900{background:#071712!important}
+.dark .bg-slate-800,.bg-slate-800{background:#0b211b!important}
+.bg-emerald-600{background:#0d8a68!important}
+.bg-emerald-500{background:#19b887!important}
+.text-emerald-600{color:var(--gold2)!important}
+.text-emerald-700{color:#e6c66b!important}
+.text-slate-500{color:var(--muted)!important}
+.text-slate-400{color:#849791!important}
+.text-slate-300{color:#aabbb5!important}
+.border-slate-200,.border-slate-200\/80{border-color:rgba(215,180,90,.18)!important}
+.border-slate-700{border-color:rgba(215,180,90,.18)!important}
+.border-emerald-300{border-color:rgba(25,184,135,.55)!important}
+.bg-emerald-100{background:rgba(25,184,135,.15)!important}
+.bg-emerald-950{background:rgba(6,55,42,.75)!important}
+.bg-amber-50{background:rgba(215,180,90,.14)!important}
+.text-amber-700{color:var(--gold2)!important}
+.bg-amber-500{background:#b98928!important}
+.text-rose-600{color:#f08c88!important}
+.border-rose-200{border-color:rgba(240,140,136,.25)!important}
+.bg-slate-100{background:#102820!important}
+.bg-slate-900.text-white{background:linear-gradient(135deg,#b58b32,#d7b45a)!important;color:#08120f!important}
 </style>
 </head>
 <body class="text-slate-800 dark:text-slate-100">
 <div id="app">
-<div id="loading" class="min-h-screen grid place-items-center"><div class="text-center"><div class="text-3xl">☪</div><b>Namaz Takip yükleniyor…</b></div></div>
+<div id="loading" class="min-h-screen grid place-items-center" style="background:linear-gradient(180deg,#06110f,#091a16)"><div class="text-center"><div class="text-3xl">☪</div><b>Namaz Takip yükleniyor…</b></div></div>
 <section id="setup" class="hidden min-h-screen p-5"><div class="mx-auto max-w-md pt-8">
 <h1 class="text-3xl font-black">Namaz Takip</h1><p class="mt-2 text-slate-500">Arkadaş grubunuzla aynı ekranı paylaşın. Herkes yalnızca kendi namazlarını işaretlesin.</p>
 <div class="glass rounded-3xl border p-5 mt-6">
@@ -32,7 +96,7 @@ button,input{touch-action:manipulation}.glass{background:rgba(255,255,255,.78);b
 <main id="main" class="hidden">
 <header class="sticky top-0 z-30 glass border-b"><div class="mx-auto max-w-5xl px-4 py-3 flex justify-between items-center">
 <div><b>☪ Namaz Takip</b><div class="text-xs text-slate-500"><span id="groupLabel"></span> · <span id="todayLabel"></span></div></div>
-<div class="flex gap-2"><button id="themeBtn" class="border rounded-xl px-3">◐</button><button id="notifyBtn" class="rounded-xl bg-emerald-600 text-white px-3 py-2 text-sm font-bold">Bildirim</button></div>
+<div class="flex gap-2"><button id="themeBtn" class="border rounded-xl px-3" style="border-color:rgba(215,180,90,.28);background:rgba(8,25,20,.8);color:#f1d47b">◐</button><button id="notifyBtn" class="rounded-xl bg-emerald-600 text-white px-3 py-2 text-sm font-bold">Bildirim</button></div>
 </div></header>
 <div class="mx-auto max-w-5xl px-4 py-5 space-y-5">
 <section class="glass rounded-3xl border p-4"><div class="flex justify-between"><div><b>Bugünkü durum</b><div id="summary" class="text-xs text-slate-500 mt-1"></div></div><button id="refreshBtn" class="border rounded-xl px-3 text-xs font-bold">Yenile</button></div><div class="mt-4 h-2 rounded-full bg-slate-100 overflow-hidden"><div id="progress" class="h-full bg-emerald-500" style="width:0%"></div></div></section>
